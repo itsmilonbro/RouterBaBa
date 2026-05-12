@@ -1,1 +1,55 @@
-home
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+body{
+  background:#0d1117;
+  color:#fff;
+  padding:20px;
+}
+
+.card{
+  background:#161b22;
+  border:1px solid #30363d;
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>📶 Network Information</h2>
+  <br>
+
+  <p>SSID : Connected Wifi</p>
+  <p>Local IP : 192.168.0.2</p>
+  <p>Router IP : 192.168.0.1</p>
+  <p>DNS : 8.8.8.8</p>
+  <p id="publicIp">Public IP : Loading...</p>
+</div>
+
+<div class="card">
+  <h2>📱 Wifi Share QR</h2>
+  <br>
+  <div id="qrcode"></div>
+</div>
+
+<script>
+fetch('https://api.ipify.org?format=json')
+.then(res=>res.json())
+.then(data=>{
+  document.getElementById('publicIp').innerText = 'Public IP : ' + data.ip;
+});
+
+new QRCode(document.getElementById("qrcode"), {
+  text: "WIFI:T:WPA;S:RouterBaBa;P:12345678;;",
+  width: 200,
+  height: 200
+});
+</script>
+
+</body>
+</html>
