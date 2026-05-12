@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 Router BaBa -webapp</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+
+<!-- LOGIN POPUP -->
+<div class="login-popup" id="loginPopup">
+  <div class="login-card">
+    <h1>🌐 Router BaBa</h1>
+    <p>🔒 Portal Login ::Network Management </p>
+
+    <input type="text" id="usernameInput" placeholder=" Username">
+
+    <button onclick="loginApp()">
+      Login to App
+    </button>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="appContainer">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      🌐 Router BaBa
+    </div>
+
+    <nav>
+      <button onclick="loadPage('pages/home.html')">Homepage</button>
+      <button onclick="loadPage('pages/router.html')">Router Login</button>
+      <button onclick="loadPage('pages/remote.html')">Remote Access</button>
+      <button onclick="loadPage('pages/speedtest.html')">Speed Test</button>
+      <button onclick="loadPage('pages/settings.html')">Setting</button>
+    </nav>
+  </header>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-circle"></div>
+    <div class="loader-text" id="loaderText">
+      Loading 0%
+    </div>
+  </div>
+
+  <!-- IFRAME -->
+  <iframe id="mainFrame" src="pages/home.html"></iframe>
+
+  <!-- FOOTER -->
+  <footer>
+   🌐 Router BaBa || Version 1.0 || All rights reserved copyright ©2026 by
+    <a href="https://facebook.com/itsmilonbro" target="_blank">
+     👤 MD. Milon Hossain
+    </a>
+  </footer>
+
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
