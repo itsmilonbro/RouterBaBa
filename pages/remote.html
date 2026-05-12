@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  background:#0d1117;
+  color:#fff;
+  padding:20px;
+}
+
+.card{
+  background:#161b22;
+  padding:20px;
+  border-radius:20px;
+}
+
+input,button{
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+}
+
+iframe{
+  width:100%;
+  height:70vh;
+  margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<h2>🔒 Router BaBa - Remote Access</h2>
+
+<input type="text" id="wanIp" placeholder="WAN IP">
+<input type="number" id="portNo" placeholder="Port">
+
+<button onclick="connectRemote()">
+Connect Remote Router
+</button>
+
+<iframe id="remoteFrame"></iframe>
+
+</div>
+
+<script>
+function connectRemote(){
+
+  const ip = document.getElementById('wanIp').value;
+  const port = document.getElementById('portNo').value;
+
+  document.getElementById('remoteFrame').src = 'http://' + ip + ':' + port;
+
+}
+</script>
+
+</body>
+</html>
