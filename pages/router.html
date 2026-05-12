@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  background:#0d1117;
+  color:#fff;
+  padding:20px;
+}
+
+input,button{
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+}
+
+iframe{
+  width:100%;
+  height:70vh;
+  margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<h2>🔐 Router Login</h2>
+
+<input type="text" id="routerIp" placeholder="192.168.0.1">
+
+<button onclick="openRouter()">
+Open Router Admin
+</button>
+
+<iframe id="routerFrame"></iframe>
+
+<script>
+function openRouter(){
+
+  const ip = document.getElementById('routerIp').value;
+
+  const url = 'http://' + ip;
+
+  document.getElementById('routerFrame').src = url;
+
+}
+</script>
+
+</body>
+</html>
