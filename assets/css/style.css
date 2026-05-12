@@ -1,1 +1,165 @@
-*
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#0d1117;
+  color:#fff;
+  overflow:hidden;
+}
+
+.login-popup{
+  position:fixed;
+  inset:0;
+  background:#000000c9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.login-card{
+  width:90%;
+  max-width:420px;
+  background:#161b22;
+  padding:30px;
+  border-radius:20px;
+  border:1px solid #30363d;
+  text-align:center;
+}
+
+.login-card h1{
+  color:#58a6ff;
+  margin-bottom:10px;
+}
+
+.login-card input{
+  width:100%;
+  padding:15px;
+  margin-top:20px;
+  border-radius:12px;
+  border:1px solid #30363d;
+  background:#0d1117;
+  color:#fff;
+}
+
+.login-card button{
+  width:100%;
+  margin-top:20px;
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:#238636;
+  color:#fff;
+  cursor:pointer;
+}
+
+.app{
+  display:none;
+  height:100vh;
+  flex-direction:column;
+}
+
+header{
+  height:70px;
+  background:#161b22;
+  border-bottom:1px solid #30363d;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  color:#58a6ff;
+}
+
+nav{
+  display:flex;
+  gap:10px;
+}
+
+nav button{
+  background:#21262d;
+  border:none;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+nav button:hover{
+  background:#58a6ff;
+}
+
+iframe{
+  width:100%;
+  flex:1;
+  border:none;
+  background:#fff;
+}
+
+footer{
+  background:#161b22;
+  border-top:1px solid #30363d;
+  padding:12px;
+  text-align:center;
+  font-size:14px;
+}
+
+footer a{
+  color:#58a6ff;
+}
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:#000000c9;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:999;
+}
+
+.loader-circle{
+  width:80px;
+  height:80px;
+  border:6px solid #30363d;
+  border-top:6px solid #58a6ff;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+.loader-text{
+  margin-top:20px;
+  font-size:18px;
+}
+
+@keyframes spin{
+  100%{
+    transform:rotate(360deg);
+  }
+}
+
+@media(max-width:900px){
+
+  header{
+    flex-direction:column;
+    height:auto;
+    padding:15px;
+    gap:15px;
+  }
+
+  nav{
+    width:100%;
+    overflow:auto;
+  }
+
+}
+
