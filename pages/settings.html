@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  background:#0d1117;
+  color:#fff;
+  padding:20px;
+}
+
+.card{
+  background:#161b22;
+  padding:20px;
+  border-radius:20px;
+}
+
+button,input{
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+}
+
+#reader{
+  width:100%;
+  margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<h2>⚙️ Settings</h2>
+
+<button onclick="viewLogs()">View Log</button>
+<button onclick="backupData()">Backup</button>
+<button onclick="restoreData()">Restore</button>
+<button onclick="clearDatabase()">Clear Database</button>
+<button onclick="generateSyncQR()">Generate Sync QR</button>
+<button onclick="scanNow()">Scan Now</button>
+
+<input type="file" id="restoreFile">
+
+<div id="qrSync"></div>
+<div id="reader"></div>
+
+</div>
+
+<script>
+function verify(){
+
+  const pass = prompt('Enter admin password');
+
+  if(pass !== 'admin'){
+    alert('Wrong Password');
+    return false;
+  }
+
+  return true;
+
+}
+
+function viewLogs(){
+
+  if(!verify()) return;
+
+  const logs = JSON.parse(localStorage.getItem('routerbaba_logs')) || [];
+
+  alert(JSON.stringify(logs,null,2));
+
+}
+
+function backupData(){
+
+  if(!verify()) return;
+
+  const data = JSON.stringify(localStorage);
+
+  const blob = new Blob([data], {type:'application/json'});
+
+  const a = document.createElement('a');
+
+  a.href = URL.createObjectURL(blob);
+  a.download = 'routerbaba-backup.json';
+  a.click();
+
+}
+
+function restoreData(){
+
+  if(!verify()) return;
+
+  const file = document.getElementById('restoreFile').files[0];
+
+  const reader = new FileReader();
+
+  reader.onload = function(){
+
+    const data = JSON.parse(reader.result);
+
+    Object.keys(data).forEach(key=>{
+      localStorage.setItem(key, data[key]);
+    });
+
+    alert('Restore Complete');
+
+  }
+
+  reader.readAsText(file);
+
+}
+
+function clearDatabase(){
+
+  if(!verify()) return;
+
+  localStorage.clear();
+
+  alert('Database Cleared');
+
+}
+
+function generateSyncQR(){
+
+  if(!verify()) return;
+
+  document.getElementById('qrSync').innerHTML = '';
+
+  new QRCode(document.getElementById('qrSync'), {
+    text : JSON.stringify(localStorage),
+    width : 200,
+    height : 200
+  });
+
+}
+
+function scanNow(){
+
+  if(!verify()) return;
+
+  const scanner = new Html5QrcodeScanner(
+    'reader',
+    {
+      fps:10,
+      qrbox:250
+    }
+  );
+
+  scanner.render(success);
+
+}
+
+function success(decodedText){
+
+  const data = JSON.parse(decodedText);
+
+  Object.keys(data).forEach(key=>{
+    localStorage.setItem(key, data[key]);
+  });
+
+  alert('Device Synchronised Successfully');
+
+}
+</script>
+
+</body>
+</html>
