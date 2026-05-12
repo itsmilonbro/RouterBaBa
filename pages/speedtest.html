@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  background:#0d1117;
+  color:#fff;
+  padding:20px;
+}
+
+.card{
+  background:#161b22;
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+iframe{
+  width:100%;
+  height:500px;
+}
+
+input,button{
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>🚀 Internet Speed Test</h2>
+  <iframe src="https://openspeedtest.com/speedtest"></iframe>
+</div>
+
+<div class="card">
+  <h2>📡 Ping Test</h2>
+
+  <input type="text" id="pingIp" placeholder="Enter IP">
+
+  <button onclick="checkPing()">
+  Check Ping
+  </button>
+
+  <div id="pingResult"></div>
+</div>
+
+<script>
+function checkPing(){
+
+  const ip = document.getElementById('pingIp').value;
+
+  const start = performance.now();
+
+  fetch('https://' + ip)
+  .then(()=>{
+
+    const end = performance.now();
+
+    document.getElementById('pingResult').innerHTML =
+    'Ping to ' + ip + ' : ' + Math.floor(end - start) + 'ms';
+
+  })
+  .catch(()=>{
+
+    document.getElementById('pingResult').innerHTML =
+    'Unable to ping target';
+
+  });
+
+}
+</script>
+
+</body>
+</html>
